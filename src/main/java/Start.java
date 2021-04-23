@@ -3,18 +3,29 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class Start extends JButton implements ActionListener {
+public class Start extends JButton implements ActionListener{
     private static final int HEIGHT = 100;
     private static final int WIDTH = 300;
+    private Timer timer;
 
-    public Start() {
+    public Start(Timer timer) {
+
+        super();
+        this.setLayout(null);
         this.setSize(WIDTH, HEIGHT);
         this.setBackground(Color.gray);
         this.setText("START");
-        this.setLayout(null);
+
+
+        this.timer = timer;
+
+        this.addActionListener(this);
     }
 
-    public void actionPerformed(ActionEvent e) {
 
+    @Override
+    public void actionPerformed(ActionEvent e)
+    {
+        timer.start();
     }
 }

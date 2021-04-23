@@ -3,11 +3,11 @@ import java.awt.GridLayout;
 
 public class Buttons extends JPanel{
 
-    public Buttons() {
+    public Buttons(Timer timer) {
         setSize(800, 100);
 
-        Start start = new Start();
-        Stop stop = new Stop();
+        Start start = new Start(timer);
+        Stop stop = new Stop(timer);
         add(start);
         add(stop);
 

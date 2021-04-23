@@ -1,109 +1,74 @@
 import javax.swing.*;
+import java.awt.*;
 
-import static java.lang.Thread.sleep;
-
-public class Timer extends JLabel implements Runnable{
+public class Timer extends JLabel{
     private int time;
     private int maxTime;
     private int minutes;
     private int seconds;
-    private String timeText;
+    private final javax.swing.Timer stopwatch;
+    String timeText;
 
-    public Timer() {
+
+    public Timer(int aligment) {
+        super("", aligment);
         setLayout(null);
-        setLocation(200,50);
-        setSize(100, 100);
+        setBounds(0,0, 900, 150);
 
-        new Thread(() -> {
-            try {
-                start_time();
+        reset();
+
+        stopwatch = new javax.swing.Timer(1000, e -> {
+
+            timeText = "";
+
+            if(minutes < 10)
+                timeText += "0";
+
+            timeText += minutes + " : ";
+
+            if(seconds < 10)
+                timeText += "0";
+
+            timeText += seconds;
+
+            Font font = new Font("SansSerif", Font.BOLD, 70);
+            setText(timeText);
+            setFont(font);
+
+
+            seconds ++;
+            if(seconds == 60)
+            {
+                seconds = 0;
+                minutes ++;
             }
-            catch (InterruptedException e) {
-                e.printStackTrace();
-            }
-        }).start();
 
+            time ++;
 
+            if(time == maxTime + 1)
+                reset();
+
+        });
     }
 
-    public int getTime() {
-        return time;
+    void start(){
+        stopwatch.start();
     }
 
-    public void setTime(int time) {
-        this.time = time;
-    }
-
-    public int getMaxTime() {
-        return maxTime;
-    }
-
-    public void setMaxTime(int max_time) {
-        this.maxTime = max_time;
+    void stop(){
+        stopwatch.stop();
     }
 
     private void reset()
     {
-        if (maxTime == 10)
+        if (maxTime == 3)
             maxTime = 5;
         else
-            maxTime = 10;
+            maxTime = 3;
 
         seconds = 0;
         minutes = 0;
-
-    }
-    private void start_time () throws InterruptedException {
-
-        while (true)
-        {
-            reset();
-
-            for( int i = 0; i <= maxTime; i++)
-            {
-                timeText = "";
-
-                if(minutes < 10)
-                    timeText += "0";
-
-                timeText += minutes + " : ";
-
-                if(seconds < 10)
-                    timeText += "0";
-
-                timeText += seconds;
-                setText(timeText);
-
-
-                sleep(1000);
-
-                seconds ++;
-
-                if(seconds == 60)
-                {
-                    seconds = 0;
-                    minutes ++;
-                }
-            }
-
-
-        }
-
-
-
-
-
-
-    }
-
-    public void run() {
-
-        try {
-            start_time();
-        }
-        catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        time = 0;
 
     }
 }

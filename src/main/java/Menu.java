@@ -1,26 +1,27 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
 
 public class Menu extends JFrame {
 
     public Menu() {
 
+        setLayout(null);
         setResizable(false);
         setSize(900, 600);
         setLocationRelativeTo(null);
-        setLayout(null);
+
         setFocusable(true);
         setTitle("Cwiczenia");
 
-        Timer time = new Timer();
-        add(time);
+        Timer timer = new Timer(SwingConstants.CENTER);
+        add(timer);
 
-        Buttons buttons = new Buttons();
+        Buttons buttons = new Buttons(timer);
         add(buttons);
 
 
+
     }
-
-
 
 }
