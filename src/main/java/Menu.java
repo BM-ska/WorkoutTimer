@@ -12,7 +12,7 @@ public class Menu extends JFrame {
         setFocusable(true);
         setTitle("Cwiczenia");
 
-        Time time = new Time();
+        Timer time = new Timer();
         add(time);
 
         Buttons buttons = new Buttons();
