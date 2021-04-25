@@ -17,4 +17,5 @@ public class State extends JLabel {
     public void setState(String state) {
         this.state = state;
     }
+
 }

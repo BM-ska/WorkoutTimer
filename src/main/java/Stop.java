@@ -12,7 +12,7 @@ public class Stop extends JButton implements ActionListener{
 
         //super();
         this.setLayout(null);
-        this.setBounds( 7 * WindowSize.VSIZE.getSize()/12, 0, WIDTH, HEIGHT);
+        this.setBounds( 7 * WindowSize.VSIZE.getSize()/12, 10, WIDTH, HEIGHT);
 
         this.setBackground(Color.gray);
         this.setText("STOP");

@@ -19,35 +19,10 @@ public class Timer extends JLabel{
 
         stopwatch = new javax.swing.Timer(1000, e -> {
 
-            timeText = "";
-
-            if(minutes < 10)
-                timeText += "0";
-
-            timeText += minutes + " : ";
-
-            if(seconds < 10)
-                timeText += "0";
-
-            timeText += seconds;
-
-            Font font = new Font("SansSerif", Font.BOLD, WindowSize.HSIZE.getSize()/10);
-            setText(timeText);
-            setFont(font);
-
-
-            seconds ++;
-            if(seconds == 60)
-            {
-                seconds = 0;
-                minutes ++;
-            }
-
-            time ++;
+            viewTime();
 
             if(time == maxTime + 1)
                 reset();
-
         });
     }
 
@@ -57,6 +32,33 @@ public class Timer extends JLabel{
 
     void stop(){
         stopwatch.stop();
+    }
+
+    private void viewTime()
+    {
+        timeText = "";
+
+        if(minutes < 10)
+            timeText += "0";
+
+        timeText += minutes + " : ";
+
+        if(seconds < 10)
+            timeText += "0";
+
+        timeText += seconds;
+
+        Font font = new Font("SansSerif", Font.BOLD, WindowSize.HSIZE.getSize()/10);
+        setText(timeText);
+        setFont(font);
+
+        seconds ++;
+        if(seconds == 60)
+        {
+            seconds = 0;
+            minutes ++;
+        }
+        time ++;
     }
 
     private void reset()
@@ -70,7 +72,6 @@ public class Timer extends JLabel{
         {
             maxTime = 3;
         }
-
 
         seconds = 0;
         minutes = 0;

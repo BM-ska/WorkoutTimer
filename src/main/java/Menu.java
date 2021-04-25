@@ -22,6 +22,9 @@ public class Menu extends JFrame {
         Timer timer = new Timer(SwingConstants.CENTER);
         add(timer);
 
+        Images images = new Images();
+        add(images);
+
         Buttons buttons = new Buttons(timer);
         add(buttons);
 

@@ -12,7 +12,7 @@ public class Start extends JButton implements ActionListener{
 
        // super();
         this.setLayout(null);
-        this.setBounds( WindowSize.VSIZE.getSize()/12, 0, WIDTH, HEIGHT);
+        this.setBounds( WindowSize.VSIZE.getSize()/12, 10, WIDTH, HEIGHT);
 
         this.setBackground(Color.gray);
         this.setText("START");
