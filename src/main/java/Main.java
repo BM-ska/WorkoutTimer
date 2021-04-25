@@ -6,7 +6,5 @@ public class Main {
         Menu menu = new Menu();
         menu.setDefaultCloseOperation(EXIT_ON_CLOSE);
         menu.setVisible(true);
-
-
     }
 }

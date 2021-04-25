@@ -19,11 +19,11 @@ public class Menu extends JFrame {
         State state = new State(SwingConstants.CENTER);
         add(state);
 
-        Timer timer = new Timer(SwingConstants.CENTER);
-        add(timer);
-
         Images images = new Images();
         add(images);
+
+        Timer timer = new Timer(SwingConstants.CENTER, state, images);
+        add(timer);
 
         Buttons buttons = new Buttons(timer);
         add(buttons);

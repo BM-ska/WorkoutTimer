@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Images extends JPanel {
-    private List<Icon> images = new ArrayList<Icon>();
+public class Images extends JPanel implements Observable{
+    private List<Icon> images = new ArrayList<>();
     JLabel image;
     private static final int HEIGHT = 2* WindowSize.HSIZE.getSize()/5;
     private static final int WIDTH = 2* WindowSize.VSIZE.getSize()/3;
@@ -36,5 +36,10 @@ public class Images extends JPanel {
             Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/"+ i +".jpg")));
             images.add(icon);
         }
+    }
+
+    @Override
+    public void Change(String state) {
+
     }
 }

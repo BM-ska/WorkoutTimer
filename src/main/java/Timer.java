@@ -1,5 +1,6 @@
 import javax.swing.*;
 import java.awt.*;
+import java.util.ArrayList;
 
 public class Timer extends JLabel{
     private int time;
@@ -7,16 +8,21 @@ public class Timer extends JLabel{
     private int minutes;
     private int seconds;
     private final javax.swing.Timer stopwatch;
-    String timeText;
+    private String timeText;
+    private String stateName;
 
+    private Observable state;
+    private Observable images;
 
-    public Timer(int aligment) {
+    public Timer(int aligment, Observable state, Observable images) {
         super("", aligment);
         setLayout(null);
         setBounds(0,WindowSize.HSIZE.getSize()/5, WindowSize.VSIZE.getSize(), WindowSize.HSIZE.getSize()/5);
 
-        reset();
+        this.state = state;
+        this.images = images;
 
+        reset();
         stopwatch = new javax.swing.Timer(1000, e -> {
 
             viewTime();
@@ -34,9 +40,19 @@ public class Timer extends JLabel{
         stopwatch.stop();
     }
 
-    private void viewTime()
-    {
+    void changeState() {
+        state.Change(stateName);
+
+        if(stateName.equals("break"))
+        {
+            images.Change(stateName);
+        }
+    }
+
+    private void viewTime() {
         timeText = "";
+
+        changeState();
 
         if(minutes < 10)
             timeText += "0";
@@ -61,21 +77,21 @@ public class Timer extends JLabel{
         time ++;
     }
 
-    private void reset()
-    {
+    private void reset() {
         if (maxTime == 3)
         {
+            stateName = "work";
             maxTime = 5;
         }
 
         else
         {
+            stateName = "break";
             maxTime = 3;
         }
 
         seconds = 0;
         minutes = 0;
         time = 0;
-
     }
 }

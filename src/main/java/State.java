@@ -1,7 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 
-public class State extends JLabel {
+public class State extends JLabel implements Observable{
     private String state = "";
 
     public State (int aligment) {
@@ -14,8 +14,9 @@ public class State extends JLabel {
         setFont(font);
     }
 
-    public void setState(String state) {
+    @Override
+    public void Change(String state) {
         this.state = state;
+        setText(state);
     }
-
 }
