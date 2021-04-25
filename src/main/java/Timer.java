@@ -1,6 +1,5 @@
 import javax.swing.*;
 import java.awt.*;
-import java.util.ArrayList;
 
 public class Timer extends JLabel{
     private int time;
@@ -8,11 +7,10 @@ public class Timer extends JLabel{
     private int minutes;
     private int seconds;
     private final javax.swing.Timer stopwatch;
-    private String timeText;
     private String stateName;
 
-    private Observable state;
-    private Observable images;
+    private final Observable state;
+    private final Observable images;
 
     public Timer(int aligment, Observable state, Observable images) {
         super("", aligment);
@@ -50,7 +48,7 @@ public class Timer extends JLabel{
     }
 
     private void viewTime() {
-        timeText = "";
+        String timeText = "";
 
         changeState();
 

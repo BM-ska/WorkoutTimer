@@ -1,11 +1,10 @@
 import javax.swing.*;
-import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
 public class Images extends JPanel implements Observable{
-    private List<Icon> images = new ArrayList<>();
+    private final List<Icon> images = new ArrayList<>();
     JLabel image;
     private static final int HEIGHT = 2* WindowSize.HSIZE.getSize()/5;
     private static final int WIDTH = 2* WindowSize.VSIZE.getSize()/3;
