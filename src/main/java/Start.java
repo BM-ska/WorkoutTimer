@@ -4,15 +4,16 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class Start extends JButton implements ActionListener{
-    private static final int HEIGHT = 100;
-    private static final int WIDTH = 300;
+    private static final int HEIGHT = WindowSize.HSIZE.getSize()/10;
+    private static final int WIDTH = WindowSize.VSIZE.getSize()/3;
     private Timer timer;
 
     public Start(Timer timer) {
 
-        super();
+       // super();
         this.setLayout(null);
-        this.setSize(WIDTH, HEIGHT);
+        this.setBounds( WindowSize.VSIZE.getSize()/12, 0, WIDTH, HEIGHT);
+
         this.setBackground(Color.gray);
         this.setText("START");
 

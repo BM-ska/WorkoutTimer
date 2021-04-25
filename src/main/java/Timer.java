@@ -13,7 +13,7 @@ public class Timer extends JLabel{
     public Timer(int aligment) {
         super("", aligment);
         setLayout(null);
-        setBounds(0,0, 900, 150);
+        setBounds(0,WindowSize.HSIZE.getSize()/5, WindowSize.VSIZE.getSize(), WindowSize.HSIZE.getSize()/5);
 
         reset();
 
@@ -31,7 +31,7 @@ public class Timer extends JLabel{
 
             timeText += seconds;
 
-            Font font = new Font("SansSerif", Font.BOLD, 70);
+            Font font = new Font("SansSerif", Font.BOLD, WindowSize.HSIZE.getSize()/10);
             setText(timeText);
             setFont(font);
 
@@ -62,9 +62,15 @@ public class Timer extends JLabel{
     private void reset()
     {
         if (maxTime == 3)
+        {
             maxTime = 5;
+        }
+
         else
+        {
             maxTime = 3;
+        }
+
 
         seconds = 0;
         minutes = 0;

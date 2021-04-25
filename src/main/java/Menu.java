@@ -8,11 +8,16 @@ public class Menu extends JFrame {
 
         setLayout(null);
         setResizable(false);
-        setSize(900, 600);
+        setSize(WindowSize.VSIZE.getSize(), WindowSize.HSIZE.getSize());
+
+
         setLocationRelativeTo(null);
 
         setFocusable(true);
         setTitle("Cwiczenia");
+
+        State state = new State(SwingConstants.CENTER);
+        add(state);
 
         Timer timer = new Timer(SwingConstants.CENTER);
         add(timer);
