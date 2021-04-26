@@ -3,7 +3,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Images extends JPanel implements Observable{
+public class Images extends JPanel implements ObservableImages{
     private final List<Icon> images = new ArrayList<>();
     JLabel image;
     private static final int HEIGHT = 2* WindowSize.HSIZE.getSize()/5;
@@ -16,29 +16,28 @@ public class Images extends JPanel implements Observable{
         image = new JLabel();
         image.setLayout(null);
         image.setBounds( (WindowSize.VSIZE.getSize() - WIDTH )/2 ,0, WIDTH, HEIGHT);
-
         add(image);
 
         loadImages();
-        viewImages();
-
     }
 
-    private void viewImages()
+    private void viewNextImages(int numerImage)
     {
-        image.setIcon(images.get(0));
+        image.setIcon(images.get(numerImage));
     }
 
     private void loadImages()
     {
-        for (int i = 1; i <= 1; i++){
+        for (int i = 1; i <= Menu.SETS; i++){
             Icon icon = new ImageIcon(Objects.requireNonNull(getClass().getResource("/"+ i +".jpg")));
             images.add(icon);
         }
+        System.out.println(images.size());
     }
 
-    @Override
-    public void Change(String state) {
 
+    @Override
+    public void Change(int numer) {
+        viewNextImages(numer);
     }
 }

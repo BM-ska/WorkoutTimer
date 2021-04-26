@@ -1,6 +1,10 @@
 import javax.swing.*;
 
 public class Menu extends JFrame {
+    public static final int SETS;
+    static {
+        SETS = 1;
+    }
 
     public Menu() {
 

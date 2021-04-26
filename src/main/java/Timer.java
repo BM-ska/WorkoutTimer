@@ -8,11 +8,12 @@ public class Timer extends JLabel{
     private int seconds;
     private final javax.swing.Timer stopwatch;
     private String stateName;
+    private int set;
 
     private final Observable state;
-    private final Observable images;
+    private final ObservableImages images;
 
-    public Timer(int aligment, Observable state, Observable images) {
+    public Timer(int aligment, Observable state, ObservableImages images) {
         super("", aligment);
         setLayout(null);
         setBounds(0,WindowSize.HSIZE.getSize()/5, WindowSize.VSIZE.getSize(), WindowSize.HSIZE.getSize()/5);
@@ -22,11 +23,21 @@ public class Timer extends JLabel{
 
         reset();
         stopwatch = new javax.swing.Timer(1000, e -> {
-
             viewTime();
+
+            if(stateName.equals("break") && time + 1 == maxTime)
+                changeImage();
 
             if(time == maxTime + 1)
                 reset();
+
+            if(set == 2 * Menu.SETS + 1)
+            {
+                stop();
+                //finish
+            }
+
+
         });
     }
 
@@ -40,17 +51,16 @@ public class Timer extends JLabel{
 
     void changeState() {
         state.Change(stateName);
+    }
 
-        if(stateName.equals("break"))
-        {
-            images.Change(stateName);
-        }
+    void changeImage() {
+        images.Change(set / 2);
     }
 
     private void viewTime() {
-        String timeText = "";
-
         changeState();
+
+        String timeText = "";
 
         if(minutes < 10)
             timeText += "0";
@@ -76,16 +86,17 @@ public class Timer extends JLabel{
     }
 
     private void reset() {
-        if (maxTime == 3)
+        set ++;
+        if (maxTime == 2)
         {
             stateName = "work";
-            maxTime = 5;
+            maxTime = 3;
         }
 
         else
         {
             stateName = "break";
-            maxTime = 3;
+            maxTime = 2;
         }
 
         seconds = 0;
